@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 ## https://repo.saltproject.io/#ubuntu
 
 # Download key
