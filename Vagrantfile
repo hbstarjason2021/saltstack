@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
 	  config.vm.define :master do |master|
 	    master.vm.provider "virtualbox" do |v|
-			  v.cpus = 1
+	          v.cpus = 1
 	          v.customize ["modifyvm", :id, "--name", "master", "--memory", "1024"]
 	    end
 	    master.vm.box = "ubuntu/focal64"
@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 	
 	  config.vm.define :minion do |minion|
 	    minion.vm.provider "virtualbox" do |v|
-			  v.cpus = 1
+	          v.cpus = 1
 	          v.customize ["modifyvm", :id, "--name", "minion", "--memory", "1024"]
 	    end
 	    minion.vm.box = "ubuntu/focal64"
