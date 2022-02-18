@@ -24,3 +24,8 @@ sed -i "s/#master: salt/master: 192.168.56.20/g" /etc/salt/minion
 
 systemctl restart salt-master
 systemctl restart salt-minion
+
+rm -rf /srv
+mkdir -p /home/vagrant/srv
+chown vagrant:vagrant /home/vagrant/srv
+ln -s /home/vagrant/srv /srv
