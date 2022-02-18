@@ -13,3 +13,6 @@ collect: init
 	@vagrant ssh master -c "rm -rf ~/srv/*"
 	@vagrant scp ./dist/* master:~/srv/ > /dev/null
 	@echo "${NO_COLOR}Collect done in ./dist"
+	@mkdir -p ./nginx
+	@rsync -a ./salt ./nginx --delete
+	@vagrant scp ./nginx/* master:~/srv/ > /dev/null
