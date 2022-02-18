@@ -12,9 +12,9 @@ collect: init
 	@rsync -a ./pillar ./dist --delete
 	@vagrant ssh master -c "rm -rf ~/srv/*"
 	@vagrant scp ./dist/* master:~/srv/ > /dev/null
-	@echo "${NO_COLOR}Collect done in ./dist"
+	@echo "${GREEN}Collect done in ./dist"
 	@echo "${NO_COLOR}collect nginx files to ./nginx"
 	@mkdir -p ./nginx
 	@rsync -a ./salt ./nginx --delete
 	@vagrant scp ./nginx/* master:~/srv/ > /dev/null
-	@echo "${NO_COLOR}Collect nginx in ./nginx"
+	@echo "${GREEN}Collect done nginx in ./nginx"
