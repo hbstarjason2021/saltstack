@@ -22,6 +22,18 @@ cp /etc/salt/master{,.back}
 sed -i "s/#auto_accept: False/auto_accept: True/g" /etc/salt/master
 sed -i "s/#master: salt/master: 192.168.56.20/g" /etc/salt/minion
 
+cat >>  /etc/salt/master <<EOF
+file_roots:
+  base:             
+    - /srv/salt
+
+pillar_roots:
+  base:
+    - /srv/pillar
+pillar_opts: True
+EOF
+
+
 systemctl restart salt-master
 systemctl restart salt-minion
 
