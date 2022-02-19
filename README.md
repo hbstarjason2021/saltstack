@@ -17,3 +17,6 @@ https://katacoda.com/hbstarjason2021/scenarios/saltstack
 
 `salt '*' state.sls nginx`     
 `salt '*' cmd.run 'ps -auxf |grep nginx'`    
+
+`salt '*' state.sls docker test=True`     
+
