@@ -14,7 +14,6 @@ sudo curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.sal
 echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=amd64] https://repo.saltproject.io/py3/ubuntu/20.04/amd64/latest focal main" | sudo tee /etc/apt/sources.list.d/salt.list
 
 sudo apt-get update
-
 sudo apt-get install salt-master salt-minion -y
 
 cp /etc/salt/master{,.back}
@@ -25,7 +24,7 @@ sed -i "s/#master: salt/master: 192.168.56.20/g" /etc/salt/minion
 cat >>  /etc/salt/master <<EOF
 file_roots:
   base:             
-    - /srv/salt/base
+    - /srv/salt
   int:
     - /srv/salt/int
   prod:
@@ -33,7 +32,7 @@ file_roots:
 
 pillar_roots:
   base:
-    - /srv/pillar/base
+    - /srv/pillar
   int:
     - /srv/pillar/int
   prod:
@@ -42,6 +41,14 @@ pillar_roots:
 pillar_opts: True
 EOF
 
+cat >>  /etc/salt/minion <<EOF
+saltenv: int
+EOF
+
+cat << EOF > /etc/salt/grains
+roles:
+  - salt
+EOF
 
 systemctl restart salt-master
 systemctl restart salt-minion
