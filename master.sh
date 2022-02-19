@@ -25,11 +25,20 @@ sed -i "s/#master: salt/master: 192.168.56.20/g" /etc/salt/minion
 cat >>  /etc/salt/master <<EOF
 file_roots:
   base:             
-    - /srv/salt
+    - /srv/salt/base
+  int:
+    - /srv/salt/int
+  prod:
+    - /srv/salt/prod
 
 pillar_roots:
   base:
-    - /srv/pillar
+    - /srv/pillar/base
+  int:
+    - /srv/pillar/int
+  prod:
+    - /srv/pillar/prod
+    
 pillar_opts: True
 EOF
 
