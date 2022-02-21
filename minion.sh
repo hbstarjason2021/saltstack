@@ -22,7 +22,7 @@ cat >>  /etc/salt/minion <<EOF
 saltenv: int
 EOF
 
-cat >> /etc/salt/grains <<EOF
+cat << EOF > /etc/salt/grains
 roles:
   - prometheus
 EOF
