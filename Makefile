@@ -9,12 +9,9 @@ init:
 collect: init
 	@echo "${NO_COLOR}collect salt config files to ./dist"
 	@mkdir -p ./dist
+	@rm -rf ./dist/*
 	@rsync -a ./pillar ./dist --delete
+	@rsync -a ./salt/* ./dist/salt --delete
 	@vagrant ssh master -c "rm -rf ~/srv/*"
-	@vagrant scp ./dist/* master:~/srv/ > /dev/null
+	@for salt_dir in $$(ls ./dist); do vagrant scp ./dist/$${salt_dir} salt-master:~/srv/ > /dev/null; done
 	@echo "${GREEN}Collect done in ./dist"
-	@echo "${NO_COLOR}collect nginx files to ./nginx"
-	@mkdir -p ./nginx
-	@rsync -a ./salt ./nginx --delete
-	@vagrant scp ./nginx/* master:~/srv/ > /dev/null
-	@echo "${GREEN}Collect done nginx in ./nginx"
