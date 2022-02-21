@@ -12,6 +12,6 @@ collect: init
 	@rm -rf ./dist/*
 	@rsync -a ./pillar/* ./dist/pillar --delete
 	@rsync -a ./salt/* ./dist/salt --delete
-	@vagrant ssh master -c "rm -rf ~/srv/*"
+	@vagrant ssh master -c "sudo rm -rf ~/srv/*"
 	@for salt_dir in $$(ls ./dist); do vagrant scp ./dist/$${salt_dir} master:~/srv/ > /dev/null; done
 	@echo "${GREEN}Collect done in ./dist"
