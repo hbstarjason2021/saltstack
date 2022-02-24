@@ -1,4 +1,3 @@
-
 user: root
 config:
   cpu: 8C
