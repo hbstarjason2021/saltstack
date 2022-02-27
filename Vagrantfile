@@ -16,6 +16,7 @@ EOS
 Vagrant.configure("2") do |config|
   $MACHINES.each do |item|
     config.vm.define item[:name] do |m|
+      ## bento/ubuntu-20.10
       m.vm.box = "ubuntu/focal64"
       m.vm.provider "virtualbox" do |v|
         v.memory = 1024
